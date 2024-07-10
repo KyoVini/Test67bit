@@ -9,13 +9,13 @@ namespace GymBeastLike
         private bool controlable;
         private GameObject character;
         private CharacterHitbox hitbox;
-
+        private StackUP stackup;
         protected override void Awake()
         {
             base.Awake();
 
             //Scripts and components
-            playercamera = transform.Find("CharCam").gameObject.GetComponent<CameraControl>();
+            playercamera = transform.Find("CharCam").transform.GetComponent<CameraControl>();
            
              //Variables
              pointscamera = new Vector3[3];
@@ -26,10 +26,11 @@ namespace GymBeastLike
             controlable = false;
 
             //Objects
-            character = transform.Find("Character").gameObject;
-            animator = character.transform.GetComponent<CharacterAnimationControl>();
+            character = transform.Find("Character").gameObject; 
+             animator = character.transform.GetComponent<CharacterAnimationControl>();
             hitbox = character.transform.Find("hitbox").GetComponent<CharacterHitbox>();
-           Debug.Log(animator);
+            stackup = transform.Find("StackUpEnemies").transform.GetComponent<StackUP>();
+            Debug.Log(animator);
         }
         public ICameraControl GetCamera() => playercamera;
         public GameObject GetPlayer() => character;
@@ -37,6 +38,7 @@ namespace GymBeastLike
         public bool GetControlable() => controlable;
         public CharacterHitbox GetHitbox() => hitbox;
         public IAnimationController GetAnimator() => animator;
+        public StackUP GetStack() => stackup;
         public void SetControlable(bool _controlable)
         {
             controlable = _controlable;

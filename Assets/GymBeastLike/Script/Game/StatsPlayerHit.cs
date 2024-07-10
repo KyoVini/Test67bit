@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 namespace GymBeastLike
 {
     public class StatsPlayerHit : IStatusGame
@@ -13,7 +14,13 @@ namespace GymBeastLike
         }
         public void OnStatus()
         {
-            //
+            List<GameObject> enemies = CharacterManager.Instance.GetHitbox().GetEnemiesHitted();
+            for(int i =0; i<enemies.Count; i++)
+            {
+                CharacterManager.Instance.GetStack().StackUpEnemy(enemies[i]);
+            }
+            //clean enemies hitbox
+            
         }
     }
 }
