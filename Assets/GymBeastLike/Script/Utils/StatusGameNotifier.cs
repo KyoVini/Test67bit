@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GymBeastLike
 {
-    public class Notifier : IListener
+    public class StatusGameNotifier : IListener
     {
         private List<IStatusGame> mylistener { get; set; }
 

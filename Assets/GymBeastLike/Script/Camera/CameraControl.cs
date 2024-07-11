@@ -19,7 +19,7 @@ namespace GymBeastLike
         }
         public void SetPositionCamera(Vector3 _newposition)
         {
-            initialposition = transform.position;
+            initialposition = transform.localPosition;
             newposition = _newposition;
             startime = Time.time;
             animated = true;
@@ -38,11 +38,11 @@ namespace GymBeastLike
                 {
                     float t = EaseCalculation.EaseInOut(elapsedTime / animationtime);
                     Vector3 currentPostion = Vector3.Lerp(initialposition, newposition, t);
-                    transform.position = currentPostion;
+                    transform.localPosition = currentPostion;
                 }
                 else
                 {
-                    transform.position = newposition;
+                    transform.localPosition = newposition;
                     animated = false;
                 }
             }

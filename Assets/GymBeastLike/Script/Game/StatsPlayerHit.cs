@@ -15,11 +15,14 @@ namespace GymBeastLike
         public void OnStatus()
         {
             List<GameObject> enemies = CharacterManager.Instance.GetHitbox().GetEnemiesHitted();
+
             for(int i =0; i<enemies.Count; i++)
             {
                 CharacterManager.Instance.GetStack().StackUpEnemy(enemies[i]);
+                CharacterManager.Instance.GetHitbox().CleanObject(enemies[i]);
             }
-            //clean enemies hitbox
+
+            CharacterManager.Instance.CamVerifyPosition();
             
         }
     }

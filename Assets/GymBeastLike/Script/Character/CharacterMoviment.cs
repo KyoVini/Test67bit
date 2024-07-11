@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace GymBeastLike
 {
-    public class CharacterMoviment : MonoBehaviour
+    public class CharacterMoviment : MonoBehaviour, IMoveControl 
     {
         private CharacterController charactercontroller;
         private float speed = 5.0f;
@@ -20,33 +20,27 @@ namespace GymBeastLike
             moving = false;
         }
 
-        void Update()
+        
+        public void Move(float moveHorizontal , float moveVertical)
         {
-            if (CharacterManager.Instance.GetControlable())
+            Vector3 move = transform.right * moveHorizontal + transform.forward * moveVertical;
+            if (move != Vector3.zero)
             {
-                float moveHorizontal = Input.GetAxis("Horizontal");
-                float moveVertical = Input.GetAxis("Vertical");
+                if (!moving)
+                {
+                    moving = true;
+                    CharacterManager.Instance.GetAnimator().PlayAnimationByParameter(animationname, true);
+                }
 
-                Vector3 move = transform.right * moveHorizontal + transform.forward * moveVertical;
-                if (move != Vector3.zero)
-                {
-                    if (!moving)
-                    {
-                        moving = true;
-                        CharacterManager.Instance.GetAnimator().PlayAnimationByParameter(animationname, true);
-                    }
-                    
-                    character.transform.rotation = Quaternion.LookRotation(move, Vector3.up);
-                }
-                else
-                {
-                    moving = false;
-                    CharacterManager.Instance.GetAnimator().PlayAnimationByParameter(animationname, false);
-                }
-                charactercontroller.Move(move * speed * Time.deltaTime);
+                character.transform.rotation = Quaternion.LookRotation(move, Vector3.up);
             }
+            else
+            {
+                moving = false;
+                CharacterManager.Instance.GetAnimator().PlayAnimationByParameter(animationname, false);
+            }
+            charactercontroller.Move(move * speed * Time.deltaTime);
         }
-
 
     }
 }

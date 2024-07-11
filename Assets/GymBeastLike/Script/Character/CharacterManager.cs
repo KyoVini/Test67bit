@@ -5,11 +5,15 @@ namespace GymBeastLike
     {
         private ICameraControl playercamera;
         private IAnimationController animator;
+        private ICharacterHitbox hitbox;
+        private IStackUP stackup;
+        private IMoveControl charactermoviment;
+        private IMoveControl stackmoviment;
         private Vector3[] pointscamera;
         private bool controlable;
         private GameObject character;
-        private CharacterHitbox hitbox;
-        private StackUP stackup;
+        
+        
         protected override void Awake()
         {
             base.Awake();
@@ -21,24 +25,28 @@ namespace GymBeastLike
              pointscamera = new Vector3[3];
             for (int i = 1; i <= pointscamera.Length; i++)
             {
-                pointscamera[i-1] = transform.Find("pointCamera" + i).transform.position;
+                pointscamera[i-1] = transform.Find("pointCamera" + i).transform.localPosition;
             }
             controlable = false;
 
             //Objects
             character = transform.Find("Character").gameObject; 
-             animator = character.transform.GetComponent<CharacterAnimationControl>();
+            animator = character.transform.GetComponent<CharacterAnimationControl>();
             hitbox = character.transform.Find("hitbox").GetComponent<CharacterHitbox>();
             stackup = transform.Find("StackUpEnemies").transform.GetComponent<StackUP>();
-            Debug.Log(animator);
+            stackmoviment = transform.Find("StackUpEnemies").transform.GetComponent<StackUPMoviment>();
+            charactermoviment = GetComponent<CharacterMoviment>();
+            
         }
         public ICameraControl GetCamera() => playercamera;
         public GameObject GetPlayer() => character;
         public Vector3[] GetCamPositions => pointscamera;
         public bool GetControlable() => controlable;
-        public CharacterHitbox GetHitbox() => hitbox;
+        public ICharacterHitbox GetHitbox() => hitbox;
         public IAnimationController GetAnimator() => animator;
-        public StackUP GetStack() => stackup;
+        public IStackUP GetStack() => stackup;
+        public IMoveControl GetCharacterMovement() => charactermoviment;
+        public IMoveControl GetStackMovemet() => stackmoviment;
         public void SetControlable(bool _controlable)
         {
             controlable = _controlable;
@@ -47,6 +55,26 @@ namespace GymBeastLike
         private void Start()
         {
             SetControlable(true);
+        }
+        public void CamVerifyPosition()
+        {
+            int postion1 = 3;
+            int postion2 = 5;
+
+            int stackobjects = stackup.GetStackedObjects().Count;
+
+            if (stackobjects < postion1)
+            {
+                playercamera.SetPositionCamera(pointscamera[0]);
+            }
+            if (stackobjects == postion1 && stackobjects < postion2)
+            {
+                playercamera.SetPositionCamera(pointscamera[1]);
+            }
+            if(stackobjects >= postion2)
+            {
+                playercamera.SetPositionCamera(pointscamera[2]);
+            }
         }
 
     }

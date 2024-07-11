@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace GymBeastLike
 {
-    public class CharacterHitbox : MonoBehaviour
+    public class CharacterHitbox : MonoBehaviour , ICharacterHitbox
     {
         [SerializeField] private KeyCode punch;
         [SerializeField] private float delaypunch;
@@ -58,7 +58,13 @@ namespace GymBeastLike
                 GameManager.Instance.PlayerHit();
             }
         }
-       
-        
+
+        public void CleanObject(GameObject objtoclean)
+        {
+            if (collidingEnemies.Contains(objtoclean))
+            {
+                collidingEnemies.Remove(objtoclean);
+            }
+        }
     }
 }
