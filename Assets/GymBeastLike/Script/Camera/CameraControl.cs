@@ -23,7 +23,6 @@ namespace GymBeastLike
             newposition = _newposition;
             startime = Time.time;
             animated = true;
-            Debug.Log("testeCamera");
         }
         public Camera GetCamera()
         {

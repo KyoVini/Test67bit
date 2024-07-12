@@ -41,7 +41,6 @@ namespace GymBeastLike
                     ispunchable = false;
                     HitEnemy();
                     Invoke(nameof(DelayPunch), delaypunch);
-                    Debug.Log("punch");
                 }
             }
         }
