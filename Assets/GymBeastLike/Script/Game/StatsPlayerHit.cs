@@ -23,7 +23,9 @@ namespace GymBeastLike
             }
 
             CharacterManager.Instance.CamVerifyPosition();
-            
+
+            GamePlayData.Instance.UpdateMoney(10);
+            UIManager.Instance.SetDisplayMoney(GamePlayData.Instance.GetMoneyValue());
         }
     }
 }

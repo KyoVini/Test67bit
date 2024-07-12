@@ -30,7 +30,7 @@ namespace GymBeastLike
 
             Vector3 rotate = transform.right * h + transform.forward * v;
 
-            for (int i = 0; i < totalenemies; i++)
+            for (int i =0; i < totalenemies; i++)
             {
                 if (move != Vector3.zero)
                 {
@@ -73,8 +73,7 @@ namespace GymBeastLike
                     previousObject.transform.localPosition - direction * followDistance,
                     followSpeed * Time.deltaTime
                 );
-
-                newpos = new Vector3(newpos.x, keepY, newpos.z);
+                newpos.y = keepY;
                 currentObject.transform.localPosition = newpos;
                 
             }

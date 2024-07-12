@@ -7,7 +7,7 @@ namespace GymBeastLike
         private IAnimationController animator;
         private ICharacterHitbox hitbox;
         private IStackUP stackup;
-        private IMoveControl charactermoviment;
+        private ACharacterMoviment charactermoviment;
         private IMoveControl stackmoviment;
         private Vector3[] pointscamera;
         private bool controlable;
@@ -35,7 +35,7 @@ namespace GymBeastLike
             hitbox = character.transform.Find("hitbox").GetComponent<CharacterHitbox>();
             stackup = transform.Find("StackUpEnemies").transform.GetComponent<StackUP>();
             stackmoviment = transform.Find("StackUpEnemies").transform.GetComponent<StackUPMoviment>();
-            charactermoviment = GetComponent<CharacterMoviment>();
+            charactermoviment = GetComponent<ACharacterMoviment>();
             
         }
         public ICameraControl GetCamera() => playercamera;
@@ -51,10 +51,9 @@ namespace GymBeastLike
         {
             controlable = _controlable;
         }
-
-        private void Start()
+        public bool IsMoving()
         {
-            SetControlable(true);
+            return charactermoviment.IsMoving();
         }
         public void CamVerifyPosition()
         {

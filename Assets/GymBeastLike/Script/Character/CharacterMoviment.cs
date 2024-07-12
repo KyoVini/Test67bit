@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace GymBeastLike
 {
-    public class CharacterMoviment : MonoBehaviour, IMoveControl 
+    public class CharacterMoviment : ACharacterMoviment
     {
         private CharacterController charactercontroller;
         private float speed = 5.0f;
@@ -20,8 +20,7 @@ namespace GymBeastLike
             moving = false;
         }
 
-        
-        public void Move(float moveHorizontal , float moveVertical)
+        public override void Move(float moveHorizontal , float moveVertical)
         {
             Vector3 move = transform.right * moveHorizontal + transform.forward * moveVertical;
             if (move != Vector3.zero)
@@ -41,6 +40,6 @@ namespace GymBeastLike
             }
             charactercontroller.Move(move * speed * Time.deltaTime);
         }
-
+        public override bool IsMoving() => moving;
     }
 }

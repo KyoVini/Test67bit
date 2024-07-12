@@ -6,7 +6,7 @@ namespace GymBeastLike
         
         private void Start()
         {
-            
+            // can control the spawn of enemies e etc
         }
         
     }
