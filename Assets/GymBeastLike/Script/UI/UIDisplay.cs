@@ -10,7 +10,7 @@ namespace GymBeastLike
 
         void Awake()
         {
-            lvtxt = transform.Find("Lv/Lvtxt").GetComponent<TextMeshProUGUI>();
+            lvtxt = transform.Find("LvDisplay/Lvtxt").GetComponent<TextMeshProUGUI>();
             moneytxt = transform.Find("Money/Moneytxt").GetComponent<TextMeshProUGUI>();
         }
 
