@@ -47,14 +47,8 @@ namespace GymBeastLike
         public IStackUP GetStack() => stackup;
         public IMoveControl GetCharacterMovement() => charactermoviment;
         public IMoveControl GetStackMovemet() => stackmoviment;
-        public void SetControlable(bool _controlable)
-        {
-            controlable = _controlable;
-        }
-        public bool IsMoving()
-        {
-            return charactermoviment.IsMoving();
-        }
+        public void SetControlable(bool _controlable){controlable = _controlable;}
+        public bool IsMoving() {return charactermoviment.IsMoving();}
         public void CamVerifyPosition()
         {
             int postion1 = 3;
@@ -75,6 +69,18 @@ namespace GymBeastLike
                 playercamera.SetPositionCamera(pointscamera[2]);
             }
         }
-
+        public bool GetCarringMaxEnemies()
+        {
+            int currentenemies = stackup.GetStackedObjects().Count;
+            int maxenemies= GamePlayData.Instance.GetEnemiesCanCarry();
+            if(currentenemies >= maxenemies)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

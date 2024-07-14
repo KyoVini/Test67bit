@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace GymBeastLike
 {
+    [RequireComponent(typeof(Camera))]
     public class CameraControl : MonoBehaviour, ICameraControl
     {
         private Camera charcamera;

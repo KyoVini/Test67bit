@@ -15,17 +15,18 @@ namespace GymBeastLike
         public void OnStatus()
         {
             List<GameObject> enemies = CharacterManager.Instance.GetHitbox().GetEnemiesHitted();
-
-            for(int i =0; i<enemies.Count; i++)
+            do
             {
-                CharacterManager.Instance.GetStack().StackUpEnemy(enemies[i]);
-                CharacterManager.Instance.GetHitbox().CleanObject(enemies[i]);
-            }
-
+                 if (!CharacterManager.Instance.GetCarringMaxEnemies())
+                {
+                    CharacterManager.Instance.GetStack().StackUpEnemy(enemies[0]);
+                }
+                CharacterManager.Instance.GetHitbox().CleanObject(enemies[0]);
+            
+            } while (enemies.Count > 0);
+            KeySceneryManager.Instance.DepositLandActive(true);
             CharacterManager.Instance.CamVerifyPosition();
 
-            GamePlayData.Instance.UpdateMoney(10);
-            UIManager.Instance.SetDisplayMoney(GamePlayData.Instance.GetMoneyValue());
         }
     }
 }

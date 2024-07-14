@@ -4,18 +4,18 @@ namespace GymBeastLike
 {
     public class CharacterHitbox : MonoBehaviour , ICharacterHitbox
     {
-        [SerializeField] private KeyCode punch;
+        //[SerializeField] private KeyCode punch;
         [SerializeField] private float delaypunch;
         private bool ispunchable;
         private string animationname;
         private List<GameObject> collidingEnemies;
-
+        
         public List<GameObject> GetEnemiesHitted() => collidingEnemies;
 
         private void Awake()
         {
             collidingEnemies = new List<GameObject>();
-            punch = KeyCode.Mouse0;
+            //punch = KeyCode.Space;
             ispunchable = true;
             animationname = "punch";
             delaypunch = 0.6f;
@@ -35,7 +35,9 @@ namespace GymBeastLike
         {
             if (CharacterManager.Instance.GetControlable())
             {
-                if (Input.GetKeyDown(punch) && ispunchable)
+                //if (Input.GetKeyDown(punch) && ispunchable)
+                
+                if (ispunchable && collidingEnemies.Count > 0)
                 {
                     CharacterManager.Instance.GetAnimator().PlayAnimationByParameter(animationname, true);
                     ispunchable = false;
@@ -57,7 +59,6 @@ namespace GymBeastLike
                 GameManager.Instance.PlayerHit();
             }
         }
-
         public void CleanObject(GameObject objtoclean)
         {
             if (collidingEnemies.Contains(objtoclean))

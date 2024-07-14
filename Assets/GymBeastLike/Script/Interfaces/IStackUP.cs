@@ -6,5 +6,6 @@ namespace GymBeastLike
     {
         void StackUpEnemy(GameObject newenemy);
         List<GameObject> GetStackedObjects();
+        public void CleanObject(GameObject objtoclean);
     }
 }

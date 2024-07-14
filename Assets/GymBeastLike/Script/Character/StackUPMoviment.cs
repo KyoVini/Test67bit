@@ -51,7 +51,7 @@ namespace GymBeastLike
                 first.transform.localRotation = Quaternion.LookRotation(rotate, Vector3.up);
 
         }
-        void Update()
+        void FixedUpdate()
         {
 
             for (int i = 1; i < StackUP.Instance.GetStackedObjects().Count; i++)

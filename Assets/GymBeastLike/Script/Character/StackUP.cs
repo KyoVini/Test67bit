@@ -37,5 +37,13 @@ namespace GymBeastLike
             enemiesstacks[enemiesstacks.Count - 1].transform.localPosition = newposition;
         }
         public List<GameObject> GetStackedObjects() => enemiesstacks;
+        public void CleanObject(GameObject objtoclean)
+        {
+            if (enemiesstacks.Contains(objtoclean))
+            {
+                enemiesstacks.Remove(objtoclean);
+                Destroy(objtoclean);
+            }
+        }
     }
 }
