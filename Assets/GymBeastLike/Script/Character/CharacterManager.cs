@@ -12,7 +12,7 @@ namespace GymBeastLike
         private Vector3[] pointscamera;
         private bool controlable;
         private GameObject character;
-        
+        private ICharacterChangeSkin changeskin;
         
         protected override void Awake()
         {
@@ -36,7 +36,7 @@ namespace GymBeastLike
             stackup = transform.Find("StackUpEnemies").transform.GetComponent<StackUP>();
             stackmoviment = transform.Find("StackUpEnemies").transform.GetComponent<StackUPMoviment>();
             charactermoviment = GetComponent<ACharacterMoviment>();
-            
+            changeskin = character.transform.GetComponent<CharacterChangeSkin>();
         }
         public ICameraControl GetCamera() => playercamera;
         public GameObject GetPlayer() => character;
@@ -47,6 +47,7 @@ namespace GymBeastLike
         public IStackUP GetStack() => stackup;
         public IMoveControl GetCharacterMovement() => charactermoviment;
         public IMoveControl GetStackMovemet() => stackmoviment;
+        public ICharacterChangeSkin GetChangeSkin() => changeskin;
         public void SetControlable(bool _controlable){controlable = _controlable;}
         public bool IsMoving() {return charactermoviment.IsMoving();}
         public void CamVerifyPosition()

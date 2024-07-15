@@ -14,6 +14,10 @@ namespace GymBeastLike
             {
                 GameManager.Instance.GameUpgrade();
             }
+            if (other.gameObject.name == "wardrobe")
+            {
+                GameManager.Instance.GameChangeSkin();
+            }
         }
        
     }

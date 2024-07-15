@@ -18,6 +18,8 @@ namespace GymBeastLike
             UIManager.Instance.SetDisplayLv(GamePlayData.Instance.GetLvValue());
             UIManager.Instance.SetDisplayMoney(GamePlayData.Instance.GetMoneyValue());
 
+            KeySceneryManager.Instance.WardrobeLandActive(true);
+
             CharacterManager.Instance.SetControlable(true);
         }
     }

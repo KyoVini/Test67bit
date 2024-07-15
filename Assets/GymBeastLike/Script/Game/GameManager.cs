@@ -6,12 +6,12 @@ namespace GymBeastLike
         private StatusGameNotifier gamestart;
         private StatusGameNotifier playerhit;
         private StatusGameNotifier deposit;
-        private StatusGameNotifier DisplayMoney;
+        private StatusGameNotifier changeskin;
         private StatusGameNotifier upgrade;
         private StatusControlGameNofifier gamecontrol;
 
         private StateFactory statefactory;
-        // Start is called before the first frame update
+        
         protected override void Awake()
         {
             base.Awake();
@@ -19,6 +19,7 @@ namespace GymBeastLike
             gamestart = new StatusGameNotifier();
             playerhit = new StatusGameNotifier();
             deposit = new StatusGameNotifier();
+            changeskin = new StatusGameNotifier();
             upgrade = new StatusGameNotifier();
             gamecontrol = new StatusControlGameNofifier();
             
@@ -32,12 +33,14 @@ namespace GymBeastLike
         public StatusGameNotifier GetPlayerHit() => playerhit;
         public StatusGameNotifier GetGameDeposit() => deposit;
         public StatusGameNotifier GetGameUpgrade() => upgrade;
+        public StatusGameNotifier GetGameChangeSkin() => changeskin;
         public StatusControlGameNofifier GetGameControl() => gamecontrol;
 
         public void StartGame() { gamestart.Notify(); }
         public void PlayerHit() { playerhit.Notify(); }
         public void GameDeposit() { deposit.Notify(); }
         public void GameUpgrade() { upgrade.Notify(); }
+        public void GameChangeSkin() { changeskin.Notify(); }
         public void GameControl(float horizontal, float vertical) { gamecontrol.Notify(horizontal, vertical); }
 
 

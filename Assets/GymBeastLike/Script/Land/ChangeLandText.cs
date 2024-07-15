@@ -10,7 +10,6 @@ namespace GymBeastLike
         void Awake()
         {
             texttoupdate = transform.Find("UpgradeTxt").GetComponent<TextMeshPro>();
-            Debug.Log(texttoupdate);
         }
 
         public void SetText(string _text)

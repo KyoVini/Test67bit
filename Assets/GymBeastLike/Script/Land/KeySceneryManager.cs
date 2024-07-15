@@ -7,13 +7,15 @@ namespace GymBeastLike
     {
         private List<Transform> upgrade;
         private List<ILandActiveControl> deposit;
-        
+        private List<ILandActiveControl> wardrobe;
+
         protected override void Awake()
         {
             base.Awake();
 
             upgrade = new List<Transform>();
             deposit = new List<ILandActiveControl>();
+            wardrobe = new List<ILandActiveControl>();
             foreach (Transform child in transform)
             {
                 if (child.name == "upgrade")
@@ -24,7 +26,13 @@ namespace GymBeastLike
                 {
                     deposit.Add(child.GetComponent<LandActiveControl>());
                 }
+                else if (child.name == "wardrobe")
+                {
+                    wardrobe.Add(child.GetComponent<LandActiveControl>());
+                }
             }
+
+            
         }
         public void UpgradeLandActive(bool _active)
         {
@@ -46,7 +54,16 @@ namespace GymBeastLike
                 }
             }
         }
-
+        public void WardrobeLandActive(bool _active)
+        {
+            if (wardrobe.Count > 0)
+            {
+                for (int i = 0; i < wardrobe.Count; i++)
+                {
+                    wardrobe[i].SetisAble(_active);
+                }
+            }
+        }
         public void SetUpgradeLand()
         {
             //verify if the current money is possible buy a upgrade

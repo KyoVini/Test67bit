@@ -6,6 +6,7 @@ namespace GymBeastLike
         private StatsPlayerHit playerhit;
         private StatsGameDeposit deposit;
         private StatsGameUpgrade upgrade;
+        private StatsGameChangeSkin changeskin;
         private StatsGameControl gamecontrol;
         
         public StateFactory()
@@ -14,6 +15,7 @@ namespace GymBeastLike
             gamecontrol = new StatsGameControl();
             deposit = new StatsGameDeposit();
             upgrade = new StatsGameUpgrade();
+            changeskin = new StatsGameChangeSkin();
             gamestart = new StatsGameStart();
             
         }
